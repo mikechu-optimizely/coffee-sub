@@ -11,6 +11,9 @@ import Grind from "./components/Grind.js";
 
 import React, { useState, useEffect } from "react";
 
+const response = await fetch("/datafile.json");
+const datafile = JSON.stringify( await response.json());
+
 function App() {
   const [addedToCart, setAddedToCart] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
@@ -24,7 +27,7 @@ function App() {
   const optimizely = require("@optimizely/optimizely-sdk");
   const optimizelyClient = optimizely.createInstance({
     logLevel: "debug",
-    sdkKey: "B3sNMM9RTdM6X7b6kMW4r",
+    datafile,
   });
 
   optimizelyClient.onReady().then(async () => {
